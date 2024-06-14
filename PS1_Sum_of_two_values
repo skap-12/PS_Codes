@@ -1,0 +1,49 @@
+// All Accepted
+
+#pragma GCC optimize ("Ofast")
+#pragma GCC optimize ("unroll-loops")
+ 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int n,x;
+    cin >> n >> x;
+    vector < pair < int,int > > v;
+    for(int i = 0;i<n;i++)
+    {
+        int a1;
+        cin >> a1;
+        v.push_back({a1,i});
+    }
+    std::sort(v.begin(), v.end(), [](auto &left, auto &right) {
+        return left.first < right.first;
+    });
+    int p1 = 0;
+    int p2 = n-1;
+    int flag = 1;
+    while(p1<p2 && flag)
+    {
+        if(v[p1].first + v[p2].first == x)
+        {
+            cout << v[p1].second + 1 << " " << v[p2].second + 1;
+            flag = 0;
+        }
+        else if(v[p1].first + v[p2].first > x)
+        {
+            p2--;
+        }
+        else
+        {
+            p1++;
+        }
+    }
+    if(flag)
+    {
+        cout << "IMPOSSIBLE";
+    }
+    return 0;
+}
