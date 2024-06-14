@@ -1,0 +1,67 @@
+// All Accepted
+
+#pragma GCC optimize ("Ofast")
+#pragma GCC optimize ("unroll-loops")
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        int n,flag = 1;
+        cin >> n;
+        long long a[n];
+        for(int i=0;i<n;i++)
+        {
+            cin >> a[i];
+            if(a[i]!=a[i-1])
+            {
+                flag = 0;
+            }
+        }
+        if(flag)
+        {
+            cout << "1";
+        }
+        else
+        {
+        int r = 0;
+        for(int i=0;i<=20;i++){
+            int m = 0;
+            int ctr = 0;
+            int b = 1<<i;
+            for(int j = 0;j<n;j++)
+            {
+                int k = a[j]&b;
+                if(!k)
+                {
+                    ctr++;
+                }
+                else
+                {
+                    m = max(ctr,m);
+                    ctr = 0;
+                }
+            }
+            m = max(ctr,m);
+            if(ctr == n)
+            {
+                m = 0;
+            }
+            r = max(r,m);
+        }
+        cout << r+1;
+        }
+        cout << endl;
+    }
+   
+    return 0;
+}
+
