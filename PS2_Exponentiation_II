@@ -1,0 +1,52 @@
+// All Accepted
+
+#pragma GCC optimize ("Ofast")
+#pragma GCC optimize ("unroll-loops")
+ 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define MOD 1000000007
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
+    cin >> n;
+    while(n--)
+    {
+        long long a,b,c;
+        cin >> a >> b >> c;
+        long long res = 1,tres = 1;
+        if(c == 0)
+        {
+            res = 1;
+        }
+        else
+        {
+            while(c > 0)
+            {
+                if(c%2)
+                {
+                    res = (res*b)%(MOD - 1);
+                }
+                b = (b*b)%(MOD - 1);
+                c >>= 1;
+            }
+        }
+            while(res > 0)
+            {
+                if(res%2)
+                {
+                    tres = (tres*a)%MOD;
+                }
+                a = (a*a)%MOD;
+                res >>= 1;
+            }
+        cout << tres;
+        
+        cout << endl;
+    }
+    return 0;
+}
+
