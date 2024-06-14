@@ -1,0 +1,110 @@
+// All Accepted
+
+#pragma GCC optimize ("Ofast")
+#pragma GCC optimize ("unroll-loops")
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int n;
+    cin >> n;
+    vector <int> a(n);
+    int m = 1e9+1,l = 0;
+    for(int i = 0;i<n;i++)
+    {
+        cin >> a[i];
+        if(a[i] < m)
+        {
+            m = a[i];
+            l = i;
+        }
+    }
+    vector <int> v;
+    for(int i = 1;i*i<=m;i++)
+    {
+        if(m%i == 0)
+        {
+            v.push_back(i);
+            if(i*i != m)
+            {
+                v.push_back(m/i);
+            }
+        }
+        
+    }
+    sort(v.begin(),v.end(),greater <long long>());
+    int ctr = 0,flag = 1,ans1 = 1;
+    for(auto u :v)
+    {
+        ctr = 0;
+        for(int i = 0;i<n;i++)
+        {
+            if(a[i]%u)
+            {
+                ctr++;
+            }
+            if(ctr == 2)
+            {
+                flag = 0;
+                break;
+            }
+        }
+        if(flag)
+        {
+            ans1 = u;
+            break;
+        }
+        flag = 1;
+    }
+    int m1 = 1e9+1;
+    vector <int> v1;
+    for(int i = 0;i<n;i++)
+    {
+        if(i!= l && a[i] < m1)
+        {
+            m1= a[i];
+        }
+    }
+    for(int i = 1;i*i<=m1;i++)
+    {
+        if(m1%i == 0)
+        {
+            v1.push_back(i);
+            if(i*i != m1)
+            {
+                v1.push_back(m1/i);
+            }
+        }
+        
+    }
+    sort(v1.begin(),v1.end(),greater <long long>());
+    int ctr1 = 0,flag1 = 1,ans2 = 1;
+    for(auto u :v1)
+    {
+        ctr1 = 0;
+        for(int i = 0;i<n;i++)
+        {
+            if(a[i]%u)
+            {
+                ctr1++;
+            }
+            if(ctr1 == 2)
+            {
+                flag1 = 0;
+                break;
+            }
+        }
+        if(flag1)
+        {
+            ans2 = u;
+            break;
+        }
+        flag1 = 1;
+    }
+    cout << max(ans1,ans2);
+    return 0;
+}
