@@ -1,3 +1,5 @@
+// ALL ACCEPTED
+
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
 
