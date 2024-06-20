@@ -1,4 +1,6 @@
-    #pragma GCC optimize ("Ofast")
+// ALL ACCEPTED
+
+#pragma GCC optimize ("Ofast")
     #pragma GCC optimize ("unroll-loops")
      
     #include <iostream>
